@@ -5,20 +5,8 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-app.get("/", (req, res) => {
-    res.send("3 Cards Backend is running");
-});
-
 const server = http.createServer(app);
-const io = new Server(server, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-    },
-    transports: ["polling", "websocket"], // 👈 REQUIRED
-    allowEIO3: true
-});
-
+const io = new Server(server, { cors: { origin: "*" } });
 
 let rooms = {};
 
@@ -183,6 +171,4 @@ io.on('connection', (socket) => {
 });
 const PORT = process.env.PORT || 3001;
 
-server.listen(PORT, () => {
-    console.log('Server running on port', PORT);
-});
+server.listen(3001, () => console.log('Server running on port 3001'));
